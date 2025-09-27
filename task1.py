@@ -26,6 +26,6 @@ df.to_parquet("tour_bookings.parquet", engine="pyarrow", index=False)
 con = db.connect("travelduck.duckdb")
 con.execute("CREATE TABLE tour_bookings AS SELECT * FROM read_parquet('tour_bookings.parquet')")
 
-# 5. Run queries to see the implemention.
+# 5. Run queries to see the execution.
 print(con.execute("SELECT COUNT(*) FROM tour_bookings").fetchall())
 print(con.execute("SELECT * FROM tour_bookings LIMIT 5").fetchdf())
