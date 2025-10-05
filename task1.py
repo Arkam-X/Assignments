@@ -24,7 +24,7 @@ df.to_parquet("tour_bookings.parquet", engine="pyarrow", index=False)
 
 # 4. Load the data into DUCK.
 con = db.connect("travelduck.duckdb")
-con.execute("CREATE TABLE tour_bookings AS SELECT * FROM read_parquet('tour_bookings.parquet')")
+con.execute("CREATE TABLE IF NOT EXISTS tour_bookings AS SELECT * FROM read_parquet('tour_bookings.parquet')")
 
 # 5. Run queries to see the execution.
 print(con.execute("SELECT COUNT(*) FROM tour_bookings").fetchall())
